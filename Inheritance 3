@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Hotel
+{
+   string name,loc;
+   int room;
+   char price[20];
+   public:
+        void input()
+        {
+           cout<<"\nHotel name:";
+           cin>>name;
+           cout<<"Number of rooms:";
+           cin>>room;
+           cout<<"Price per room per day:";
+           cin>>price;
+           cout<<"Location:";
+           cin>>loc;
+        }
+};
+int main()
+{
+   int n;
+   cout<<"Enter no.of.hotels:";
+   cin>>n;
+   Hotel h;
+   for(int i=1;i<=n;i++)
+   {
+      h.input();
+   }
+   return 0;
+}
