@@ -1,0 +1,48 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <set>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+     int q;
+    cin >> q;
+    
+    map<string, int> m;
+    
+    while(q--) {
+        int type;
+        cin >> type;
+        
+        string name;
+        if (type == 1) {
+            int marks;
+            cin >> name >> marks;
+            // Accumulate marks: adds to existing value or creates new entry
+            m[name] += marks;
+        } 
+        else if (type == 2) {
+            cin >> name;
+            // Erase the student record entirely
+            m.erase(name);
+        } 
+        else if (type == 3) {
+            cin >> name;
+            // Use find to check if student exists to avoid inserting dummy entries
+            auto it = m.find(name);
+            if (it != m.end()) {
+                cout << it->second << endl;
+            } else {
+                cout << 0 << endl;
+            }
+        }
+    }  
+    return 0;
+}
+
+
+
