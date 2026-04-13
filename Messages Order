@@ -1,0 +1,25 @@
+class Message {
+private:
+    string text;
+    int id; 
+public:
+    Message() : id(0) {}
+    Message(const string& t, int sequence_id) : text(t), id(sequence_id) {}
+
+    const string& get_text() {
+        return text;
+    }
+    bool operator < (const Message& other) const {
+        return this->id < other.id;
+    }
+};
+class MessageFactory {
+private:
+    int current_id; 
+public:
+    MessageFactory() : current_id(0) {}
+    Message create_message(const string& text) {
+        return Message(text, current_id++);
+    }
+};
+
