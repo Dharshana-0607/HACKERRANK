@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class two;
+class one
+{
+int k1;
+friend class two;
+public:
+void data()
+{
+cout<<"Enter first number: ";
+cin>>k1;
+}
+};
+class two
+{
+int k2;
+public:
+void data()
+{
+cout<<"Enter second number: ";
+cin>>k2;
+}
+int avg( one a1, two b1)
+{
+int p;
+return (a1.k1 + b1.k2)/2;
+}
+int max(one a1, two b1)
+{
+if( a1.k1> b1.k2 )
+{
+return a1.k1;
+}
+else
+{
+return b1.k2;
+}
+}
+};
+int main()
+{
+one a1;
+a1.data();
+two b1;
+b1.data();
+cout<<"Average is "<<b1.avg(a1,b1)<<endl;
+cout<<"Maximum is "<<b1.max(a1,b1)<<endl;
+return 0;
+}
