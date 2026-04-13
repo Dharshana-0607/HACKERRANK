@@ -1,0 +1,36 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Employee
+{
+   string ename;
+   int eid,esal;
+   public:
+        Employee()
+        {
+           ename="Unknown";
+           eid=0;
+           esal=0;
+           cout<<"Employee name:"<<ename<<endl;
+           cout<<"Employee ID:"<<eid<<endl;
+           cout<<"Employee salary:"<<esal<<endl;
+        }
+        Employee(string a, int b, int c)
+        {
+           ename=a;
+           eid=b;
+           esal=c;
+           cout<<"Employee name:"<<ename<<endl;
+           cout<<"Employee ID:"<<eid<<endl;
+           cout<<"Employee salary:"<<esal<<endl;
+        }
+};
+int main()
+{
+   cout<<"Using Default constructor:"<<endl;
+   Employee e;
+   cout<<"Using Parameterized constructor:"<<endl;
+   string a= "Alice";
+   Employee e1(a,101,55000);
+   return 0;
+}
