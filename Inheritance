@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+class worker
+{
+   public:
+      int man,dev,wa4,wa3,wah;
+      worker()
+      {
+         wah=50;
+         man=50000;
+         dev=40000;
+      }
+};
+class empl:public worker
+{
+   public:
+      void Salary()
+      {
+         cout<<"Permanent Employee(mamager)Salary:"<<man<<endl;
+         cout<<"Permanent Employee(Developer)Salary:"<<dev<<endl;
+         cout<<"Daily Wages Employee Salary(Hours worked:40):"<<wah*40<<endl;
+         cout<<"Daily Wages Employee Salary(Hours worked:30):"<<wah*30<<endl;
+      }
+};
+int main()
+{
+   empl A;
+   A.Salary();
+   return 0;
+}
