@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int findGCD(vector<int>& nums) {
+        int minNum = nums[0];
+        int maxNum = nums[0];
+        
+        for (int x : nums) {
+            if (x < minNum) minNum = x;
+            if (x > maxNum) maxNum = x;
+        }
+        
+        return gcd(minNum, maxNum);
+    }
+};
