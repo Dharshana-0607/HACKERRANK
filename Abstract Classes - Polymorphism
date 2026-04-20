@@ -1,0 +1,57 @@
+
+class LRUCache : public Cache {
+public:
+    LRUCache(int capacity) {
+        cp = capacity;
+        head = NULL;
+        tail = NULL;
+    }
+    void set(int k, int v) override {
+        if (mp.find(k) != mp.end()) {
+            Node* node = mp[k];
+            node->value = v;
+            moveToHead(node);
+            return;
+        }
+        Node* newNode = new Node(k, v);
+        if (mp.empty()) {
+            head = tail = newNode;
+        } else {
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
+        }
+        mp[k] = newNode;
+        if (mp.size() > cp) {
+            mp.erase(tail->key);
+            Node* temp = tail;
+            tail = tail->prev;
+            tail->next = NULL;
+            delete temp;
+        }
+    }
+    int get(int k) override {
+        if (mp.find(k) == mp.end()) return -1;
+        
+        Node* node = mp[k];
+        moveToHead(node);
+        return node->value;
+    }
+private:
+    void moveToHead(Node* node) {
+        if (node == head) return;
+        
+        if (node == tail) {
+            tail = tail->prev;
+            tail->next = NULL;
+        } else {
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+        }
+        node->next = head;
+        node->prev = NULL;
+        head->prev = node;
+        head = node;
+    }
+};
+
