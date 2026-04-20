@@ -1,0 +1,46 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <sstream>        
+#include <unordered_map>  
+using namespace std;
+int main() {
+    int n, q;
+    cin >> n >> q;
+    cin.ignore();
+    unordered_map<string, string> mp;
+    vector<string> tagStack;
+    while (n--) {
+        string line;
+        getline(cin, line);
+        if (line[1] == '/') {
+            tagStack.pop_back();
+        }
+        else {
+            line = line.substr(1, line.size() - 2); // remove < >
+            stringstream ss(line);
+            string tag;
+            ss >> tag;
+            tagStack.push_back(tag);
+            string attr, eq, value;
+            while (ss >> attr >> eq >> value) {
+                value = value.substr(1, value.size() - 2); // remove quotes
+                string fullTag = tagStack[0];
+                for (int i = 1; i < tagStack.size(); i++)
+                    fullTag += "." + tagStack[i];
+                mp[fullTag + "~" + attr] = value;
+            }
+        }
+    }
+    while (q--) {
+        string query;
+        cin >> query;
+        if (mp.find(query) != mp.end())
+            cout << mp[query] << endl;
+        else
+            cout << "Not Found!" << endl;
+    }   
+    return 0;
+}
