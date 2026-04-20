@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+class HotelRoom {
+    public:
+        HotelRoom(int bedrooms, int bathrooms) {
+            this->bedrooms = bedrooms;
+            this->bathrooms = bathrooms;
+        }
+        virtual int get_price() {
+            return 50 * bedrooms + 100 * bathrooms;
+        }
+    private:
+        int bedrooms;
+        int bathrooms;
+};
+class HotelApartment : public HotelRoom {
+    public:
+        HotelApartment(int bedrooms, int bathrooms)
+        : HotelRoom(bedrooms, bathrooms) {}
+        int get_price() {
+            return HotelRoom::get_price() + 100;
+        }
+};
+int main() {
+    int n;
+    cin >> n;
+    vector<HotelRoom*> rooms;
+    while(n--) {
+        string room_type;
+        int bedrooms, bathrooms;
+        cin >> room_type >> bedrooms >> bathrooms;
+        if(room_type == "standard") {
+            rooms.push_back(new HotelRoom(bedrooms, bathrooms));
+        } 
+        else {
+            rooms.push_back(new HotelApartment(bedrooms, bathrooms));
+        }
+    }
+    int total_profit = 0;
+    for(int i = 0; i < rooms.size(); i++) {
+        total_profit += rooms[i]->get_price();
+    }
+    cout << total_profit << endl;
+    return 0;
+}
