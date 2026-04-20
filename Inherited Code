@@ -1,0 +1,14 @@
+#include <string>
+#include <exception>
+using namespace std;
+class BadLengthException : public exception {
+    private:
+        string length_str;
+    public:
+        BadLengthException(int n) {
+            length_str = to_string(n);
+        }
+        const char* what() const noexcept override {
+            return length_str.c_str();
+        }
+};
